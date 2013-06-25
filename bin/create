@@ -1,0 +1,25 @@
+#!/bin/bash
+# Разоварачиваем новый сайт из указанной ветки
+#  create client branchname domain oldbranchname
+
+echo "server {" | tee -a /home/nginx/$1
+echo "  listen *:80;" | tee -a /home/nginx/$1
+echo "  server_name $3;" | tee -a /home/nginx/$1
+echo "  root /home/www/$1/$2;" | tee -a /home/nginx/$1
+echo "  include /home/www/$1/$2/nginx.conf;" | tee -a /home/nginx/$1
+echo "}" | tee -a /home/nginx/$1
+
+cd /home/www/
+mkdir $1
+cd $1
+mkdir $2
+cd $2
+git init
+git remote add origin git@github.com:betaagency/misc.git
+sed -i "s/\*/$4/g" .git/config
+git pull
+git checkout -b $2
+./install
+cd
+ln -s /home/www/$1/$2 $2
+sudo /etc/init.d/nginx reload
