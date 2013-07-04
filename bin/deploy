@@ -18,6 +18,7 @@ git init
 git remote add origin git@github.com:betaagency/misc.git
 sed -i "s/\*/$2/g" .git/config
 git pull
+git checkout $2
 ./install
 cd
 ln -s /home/www/$1/$2 $2
