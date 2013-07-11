@@ -1,7 +1,7 @@
-Набор моих консольных команд, что нужны мне в работе
+Набор моих консольных команд, форк от Bubujka
 
 Установка
-$ wget -O - https://raw.github.com/Bubujka/bu.bin/master/install  | bash
+$ wget -O - https://raw.github.com/betaagency/bu.bin/master/install  | bash
 
 Обновление
 $ bu-bin-update
