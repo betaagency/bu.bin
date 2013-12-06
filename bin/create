@@ -19,7 +19,7 @@ git remote add origin git@github.com:betaagency/misc.git
 sed -i "s/\*/$4/g" .git/config
 git pull
 git checkout $4
-git checkout -b $2
+git checkout --orphan $2
 ./install
 cd
 ln -s /home/www/$1/$2 $2
