@@ -21,6 +21,6 @@ git pull
 git checkout $4
 git checkout --orphan $2
 ./install
-cd
+cd ~
 ln -s /home/www/$1/$2 $2
 sudo /etc/init.d/nginx reload
