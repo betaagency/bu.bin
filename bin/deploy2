@@ -1,0 +1,23 @@
+#!/bin/bash
+# Разворачиваем сайт из репозитория
+#  deploy client branchname domain
+
+echo "server {" | tee -a /home/nginx/$1
+echo "  listen *:80;" | tee -a /home/nginx/$1
+echo "  server_name $3;" | tee -a /home/nginx/$1
+echo "  root /home/www/$1/$2;" | tee -a /home/nginx/$1
+echo "  include /home/www/$1/$2/nginx.conf;" | tee -a /home/nginx/$1
+echo "}" | tee -a /home/nginx/$1
+
+cd /home/www/
+mkdir $1
+cd $1
+mkdir $2
+cd $2
+git init
+git remote add origin git@bitbucket.org:betaagency/$1-$2.git
+git pull origin master
+./install
+cd
+ln -s /home/www/$1/$2 $2
+sudo /etc/init.d/nginx reload
